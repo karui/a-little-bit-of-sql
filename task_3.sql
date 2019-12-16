@@ -19,4 +19,4 @@ from
 		as vb) 
 	as vb
 -- 	where salary_from is not null or salary_to is not null 
-	group by area_id;
+group by area_id;
