@@ -1,7 +1,7 @@
 SELECT 
 	resume_id,
 	array_to_string(array_agg(specialization_id),', ') AS specialization_array,
-	min(most_common_specialization)
+	min(most_common_specialization) as most_common_specialization
 FROM
 (	SELECT 
 		resume_id,

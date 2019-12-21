@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS vacancy (
 );
 
 CREATE TABLE IF NOT EXISTS vacancy_body_specialization (
-    vacancy_body_specialization_id integer NOT NULL,
-    vacancy_body_id integer DEFAULT 0 NOT NULL,
+--     vacancy_body_specialization_id integer NOT NULL,
+    vacancy_body_id integer REFERENCES vacancy_body,
     specialization_id integer DEFAULT 0 NOT NULL
 );
 
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS resume (
 );
 
 CREATE TABLE IF NOT EXISTS resume_specialization (
-    resume_specialization_id integer NOT NULL,
-    resume_id integer DEFAULT 0 NOT NULL,
+--     resume_specialization_id integer NOT NULL,
+    resume_id integer REFERENCES resume,
     specialization_id integer DEFAULT 0 NOT NULL
 );
 
