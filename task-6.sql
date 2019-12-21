@@ -5,7 +5,7 @@ SELECT
 FROM
 (	SELECT 
 		resume_id,
-		(array_agg(specialization_id))[1] AS most_common_specialization
+		(array_agg(specialization_id ORDER BY cnt DESC))[1] AS most_common_specialization
 	FROM
 	(	SELECT 
 			resume_id,
