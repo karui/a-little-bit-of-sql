@@ -69,10 +69,10 @@ SELECT
 FROM vacancy_body AS vb;
 
 UPDATE vacancy
-SET expires_at = created_at + (random() * 365 * 24 * 3600 * 5) * '1 second'::interval
+SET expires_at = created_at + (random() * 365 * 24 * 3600 * 5) * '1 second'::interval;
 
 ---------------------------------------------------------
--- DELETE FROM resume;
+
 INSERT INTO resume (
 	title,
 	user_id,
@@ -80,8 +80,19 @@ INSERT INTO resume (
 )
 SELECT
 	(	SELECT string_agg(substr('      abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', (random() * 77)::int + 1, 1), '') 
-		FROM generate_series(1, 1 + (random() * 150 + i % 10)::int)
+		FROM generate_series(1, 1 + (random() * 100 + i % 10)::int)
 	)	AS title,
 	(random() * 100000)::int AS user_id,
 	now()-(random() * 365 * 24 * 3600 * 5) * '1 second'::interval AS created_at
 FROM generate_series(1, 100000) AS g(i);
+
+INSERT INTO vacancy_response (
+	vacancy_id,
+	resume_id,
+	created_at
+)
+SELECT
+	(1 + random() * 9999)::int AS vacancy_id,
+	(1 + random() * 99999)::int AS resume_id,
+	now()-(random() * 365 * 24 * 3600 * 5) * '1 second'::interval AS creation_time
+FROM generate_series(1, 50000) AS g(i);

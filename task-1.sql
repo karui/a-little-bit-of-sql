@@ -35,7 +35,19 @@ CREATE TABLE IF NOT EXISTS vacancy_body_specialization (
 
 CREATE TABLE IF NOT EXISTS resume (
        resume_id serial PRIMARY KEY,
-       title varchar(133) DEFAULT ''::varcha NOT NULL,
+       title varchar(133) DEFAULT ''::varchar NOT NULL,
        user_id integer NOT NULL,
        created_at timestamp NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS resume_specialization (
+    resume_specialization_id integer NOT NULL,
+    resume_id integer DEFAULT 0 NOT NULL,
+    specialization_id integer DEFAULT 0 NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS vacancy_response (
+	vacancy_id integer REFERENCES vacancy,
+	resume_id integer REFERENCES resume,
+	created_at timestamp
 );
