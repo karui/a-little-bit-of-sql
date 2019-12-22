@@ -28,16 +28,14 @@ UPDATE resume SET title='Another one' WHERE resume_id=1;
 
 SELECT
 	resume_id,
-	(json::json->>'title')::varchar(133) as title,
-	(json::json->>'user_id')::integer as user_id,
-	(json::json->>'created_at')::timestamp as created_at
+	changed_at,
+	(json::json->>'title')::varchar(133) as title
 FROM resume_history
 WHERE resume_id=1
 UNION ALL
 SELECT
 	resume_id,
-	title,
-	user_id,
-	created_at
+	null,
+	title
 FROM resume
 WHERE resume_id=1
